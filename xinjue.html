@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>心觉空间 · 年轻人的心理私教平台</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="心觉空间，为年轻人提供心理私教服务，涵盖自我探索、人生决策、情绪急救、关系模式、亲子关系与睡眠改善。">
+  <style>
+    :root {
+      --bg: #f7f1e8;
+      --accent: #f2a88b;
+      --accent-soft: #f8c7b2;
+      --text-main: #4a3f35;
+      --text-muted: #8d7f71;
+      --card1: #fce7d8;
+      --card2: #fbeee2;
+      --card3: #f7e9f2;
+      --card4: #e9f3f1;
+      --card5: #f3f5e5;
+      --card6: #e9ecf7;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.07);
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(circle at top left, #fff3e7 0, #f7f1e8 40%, #f6efe6 100%);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 顶部导航栏 */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(247, 241, 232, 0.9), rgba(247, 241, 232, 0.6));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 30% 20%, #ffe7d5 0, #f2a88b 40%, #f2a88b 70%, #fbeee2 100%);
+      box-shadow: 0 10px 20px rgba(242, 168, 139, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff7f0;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .brand-text-main {
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 0.08em;
+    }
+
+    .brand-text-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 4px;
+      cursor: pointer;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #f2a88b, #f7c9a4);
+      transition: width 0.22s ease-out;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--text-main);
+      margin: 4px 0;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 1120px;
+      margin: 26px auto 0;
+      padding: 28px 20px 36px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: 40px;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .hero-title-main {
+      font-size: 44px;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(90deg, #f2a88b, #f7c9a4);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 360px;
+      margin-bottom: 20px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 26px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fffaf4;
+      background: radial-gradient(circle at 0% 0%, #ffe8d6 0, #f2a88b 38%, #f7c9a4 100%);
+      box-shadow: 0 18px 45px rgba(242, 168, 139, 0.55);
+      transition: transform 0.16s ease-out, box-shadow 0.16s ease-out, filter 0.16s ease-out;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.02);
+      box-shadow: 0 20px 50px rgba(242, 168, 139, 0.6);
+    }
+
+    .btn-primary:active {
+      transform: translateY(1px) scale(0.99);
+      box-shadow: 0 12px 24px rgba(242, 168, 139, 0.45);
+    }
+
+    .hero-cta-note {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* 右侧视觉卡片 */
+    .hero-visual-wrap {
+      position: relative;
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+
+    .hero-card {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      background: radial-gradient(circle at 20% 0%, #fffaf7 0, #fdf5ee 40%, #f6eee4 100%);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 16px;
+      overflow: hidden;
+    }
+
+    .hero-card-orbit {
+      position: absolute;
+      inset: -14%;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at 30% 0%, rgba(242, 168, 139, 0.18), transparent 55%),
+        radial-gradient(circle at 70% 100%, rgba(198, 214, 238, 0.24), transparent 55%);
+      opacity: 0.6;
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .hero-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .hero-card-tag {
+      font-size: 10px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(242, 168, 139, 0.12);
+      color: var(--accent);
+    }
+
+    .hero-mood-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .mood-pill {
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .mood-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+    }
+
+    .mood-dot.peace { background: linear-gradient(135deg, #b6d9d2, #e0f1eb); }
+    .mood-dot.confuse { background: linear-gradient(135deg, #f2a88b, #fbe0ce); }
+    .mood-dot.stress { background: linear-gradient(135deg, #f7c9a4, #ffe3ba); }
+    .mood-dot.family { background: linear-gradient(135deg, #f3cbdd, #f8e4f0); }
+    .mood-dot.sleep { background: linear-gradient(135deg, #c2d2f5, #dde5ff); }
+    .mood-dot.self { background: linear-gradient(135deg, #f5d99d, #ffecc8); }
+
+    .hero-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .hero-card-badge {
+      padding: 4px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px dashed rgba(242, 168, 139, 0.3);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* 通用区块 */
+    .section {
+      max-width: 1120px;
+      margin: 12px auto 40px;
+      padding: 0 20px 16px;
+    }
+
+    .section-header {
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* 六大主题卡片 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border-radius: var(--radius-md);
+      padding: 16px 16px 14px;
+      background: #ffffffee;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:nth-child(1) { background: linear-gradient(135deg, var(--card1), #fff6ed); }
+    .card:nth-child(2) { background: linear-gradient(135deg, var(--card2), #fff8f1); }
+    .card:nth-child(3) { background: linear-gradient(135deg, var(--card3), #fdf3fa); }
+    .card:nth-child(4) { background: linear-gradient(135deg, var(--card4), #f5fbfa); }
+    .card:nth-child(5) { background: linear-gradient(135deg, var(--card5), #f9fceb); }
+    .card:nth-child(6) { background: linear-gradient(135deg, var(--card6), #f3f4ff); }
+
+    .card-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-main);
+      opacity: 0.9;
+    }
+
+    /* 关于 / CTA */
+    .cta-section {
+      max-width: 1120px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+    }
+
+    .cta-box {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(120deg, #fff5ec, #fbe9ff, #ecf3ff);
+      padding: 18px 18px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06);
+    }
+
+    .cta-text-main {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .cta-text-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .cta-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cta-secondary {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* 底部 */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.9);
+      background: rgba(250, 244, 236, 0.98);
+      margin-top: 12px;
+    }
+
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 20px 18px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .social-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      cursor: pointer;
+      transition: background 0.16s ease, color 0.16s ease, transform 0.12s ease;
+    }
+
+    .social-icon:hover {
+      background: #f2a88b;
+      color: #fffaf4;
+      transform: translateY(-1px);
+    }
+
+    section[id] {
+      scroll-margin-top: 80px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        margin-top: 14px;
+      }
+
+      .hero-visual-wrap {
+        order: -1;
+      }
+
+      .hero-title {
+        font-size: 32px;
+      }
+
+      .hero-title-main {
+        font-size: 34px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        padding-inline: 16px;
+      }
+
+      .nav-links {
+        position: absolute;
+        inset-inline: 0;
+        top: 56px;
+        padding: 10px 16px 12px;
+        background: rgba(247, 241, 232, 0.98);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .hero {
+        padding-inline: 16px;
+      }
+
+      .section,
+      .cta-section {
+        padding-inline: 16px;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cta-box {
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .hero-title-main {
+        font-size: 30px;
+      }
+
+      .card-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-inline: 14px;
+      }
+
+      .section,
+      .cta-section {
+        padding-inline: 14px;
+      }
+
+      .cta-actions {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <!-- 顶部导航栏 -->
+    <header>
+      <nav class="nav" aria-label="主导航">
+        <div class="brand">
+          <div class="brand-logo" aria-hidden="true">心</div>
+          <div>
+            <div class="brand-text-main">心觉空间</div>
+            <div class="brand-text-sub">年轻人的心理私教</div>
+          </div>
+        </div>
+
+        <button class="nav-toggle" aria-label="展开导航菜单" onclick="toggleNav()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
+          <a href="#home">首页</a>
+          <a href="#services">服务</a>
+          <a href="#about">关于</a>
+          <a href="#contact">联系</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section id="home" class="hero">
+        <div class="hero-copy">
+          <p class="hero-tagline">专为 18–35 岁年轻人设计的心理私教服务</p>
+
+          <h1 class="hero-title">
+            <span class="hero-title-main">心觉空间</span><br />
+            <span class="highlight">你的心理私教</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            六大核心主题，一对一在线陪伴。让你在一个安全、温暖的空间里，练习好好和自己相处。
+          </p>
+
+          <div class="hero-cta-row">
+            <button class="btn-primary" onclick="scrollToBooking()">立即预约体验</button>
+            <span class="hero-cta-note">首单体验 · 支持线上音视频</span>
+          </div>
+        </div>
+
+        <div class="hero-visual-wrap" aria-hidden="true">
+          <div class="hero-card">
+            <div class="hero-card-orbit"></div>
+            <div class="hero-card-header">
+              <div>
+                <div class="hero-card-title">此刻，你更靠近哪一种心情？</div>
+              </div>
+              <div class="hero-card-tag">心觉小面板</div>
+            </div>
+
+            <div class="hero-mood-grid">
+              <div class="mood-pill">
+                <span class="mood-dot peace"></span>
+                <span>想安静一下</span>
+              </div>
+              <div class="mood-pill">
+                <span class="mood-dot confuse"></span>
+                <span>有点迷茫</span>
+              </div>
+              <div class="mood-pill">
+                <span class="mood-dot stress"></span>
+                <span>压力很大</span>
+              </div>
+              <div class="mood-pill">
+                <span class="mood-dot.family"></span>
+                <span>关系好累</span>
+              </div>
+              <div class="mood-pill">
+                <span class="mood-dot.sleep"></span>
+                <span>睡不太好</span>
+              </div>
+              <div class="mood-pill">
+                <span class="mood-dot.self"></span>
+                <span>想更懂自己</span>
+              </div>
+            </div>
+
+            <div class="hero-card-footer">
+              <span>给自己一次专属的心理陪伴。</span>
+              <span class="hero-card-badge">预约一小时心觉时间</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 六大主题服务 -->
+      <section id="services" class="section">
+        <div class="section-header">
+          <h2 class="section-title">六大主题</h2>
+          <p class="section-subtitle">从这里，选一个你当下最需要的开始。</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-content">
+              <div class="card-tag">主题一</div>
+              <h3 class="card-title">自我探索</h3>
+              <p class="card-desc">一起梳理故事和价值观，看见「我到底想要怎样的人生」。</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-content">
+              <div class="card-tag">主题二</div>
+              <h3 class="card-title">人生决策</h3>
+              <p class="card-desc">在重要选择前，理清恐惧与渴望，做更贴近自己的决定。</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-content">
+              <div class="card-tag">主题三</div>
+              <h3 class="card-title">情绪急救</h3>
+              <p class="card-desc">当情绪快要失控时，先帮你稳住，再慢慢找回掌控感。</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-content">
+              <div class="card-tag">主题四</div>
+              <h3 class="card-title">关系模式</h3>
+              <p class="card-desc">在安全的关系里尝试新的边界和表达，改写反复上演的旧剧情。</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-content">
+              <div class="card-tag">主题五</div>
+              <h3 class="card-title">亲子关系</h3>
+              <p class="card-desc">看见原生家庭的影响，学会既不委屈自己，也能照顾家人。</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-content">
+              <div class="card-tag">主题六</div>
+              <h3 class="card-title">睡眠改善</h3>
+              <p class="card-desc">重建睡眠节奏与放松仪式，让夜晚重新成为休息的时间。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 关于 + CTA -->
+      <section id="about" class="cta-section">
+        <div class="cta-box">
+          <div>
+            <p class="cta-text-main">关于「心觉空间」</p>
+            <p class="cta-text-sub">
+              我们希望，每一个正在努力生活的你，都有一个可以坦然说「我也需要被照顾」的地方。
+            </p>
+          </div>
+          <div class="cta-actions">
+            <button class="btn-primary" onclick="scrollToBooking()">立即预约体验</button>
+            <span class="cta-secondary">线上一对一 · 隐私保护</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 联系 / 预约锚点 -->
+      <section id="contact" class="section">
+        <div class="section-header">
+          <h2 class="section-title">预约体验</h2>
+          <p class="section-subtitle">
+            把这一个小时，留给你自己。这里可以放：微信二维码 / 小程序 / 表单链接等。
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- 底部 Footer -->
+    <footer>
+      <div class="footer-inner">
+        <div>© <span id="year"></span> 心觉空间 · XinJue Space. 保留所有权利。</div>
+        <div class="footer-social" aria-label="社交媒体链接">
+          <span>关注我们：</span>
+          <a href="#" class="social-icon" aria-label="微信（占位链接）">微</a>
+          <a href="#" class="social-icon" aria-label="微博（占位链接）">博</a>
+          <a href="#" class="social-icon" aria-label="小红书（占位链接）">红</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function toggleNav() {
+      var nav = document.getElementById("nav-links");
+      if (!nav) return;
+      nav.classList.toggle("open");
+    }
+
+    function scrollToBooking() {
+      var target = document.getElementById("contact");
+      if (!target) return;
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    (function () {
+      var y = document.getElementById("year");
+      if (y) {
+        y.textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
+</body>
+</html>
